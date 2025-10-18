@@ -1,6 +1,10 @@
 import asyncio
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
+import warnings
+warnings.filterwarnings("ignore", category=ResourceWarning)
+
+
 async def main():
     client = MultiServerMCPClient({
         "hybrid_search": {   # server name
@@ -23,7 +27,7 @@ async def main():
     # --- Step 1: Try retriever first ---
     #query = "Samsung Galaxy S25 price"
     # query = "iPhone 15"
-    query = "iPhone 20?"
+    query = "iPhone 17?"
     retriever_result = await retriever_tool.ainvoke({"query": query})
     print("\nRetriever Result:\n", retriever_result)
 
@@ -32,8 +36,6 @@ async def main():
         print("\n No local results, falling back to web search...\n")
         web_result = await web_tool.ainvoke({"query": query})
         print("Web Search Result:\n", web_result)
-        
-        
- 
+
 if __name__ == "__main__":
     asyncio.run(main())

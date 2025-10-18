@@ -1,3 +1,6 @@
+
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from mcp.server.fastmcp import FastMCP
 from retriever.retrieval import Retriever  
 from langchain_community.tools import DuckDuckGoSearchRun
@@ -52,5 +55,5 @@ async def web_search(query: str) -> str:
 
 # ---------- Run Server ----------
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
-    #mcp.run(transport="streamable-http")
+    #mcp.run(transport="stdio")
+    mcp.run(transport="streamable-http")
